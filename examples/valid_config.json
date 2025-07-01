@@ -1,0 +1,16 @@
+[
+  {
+    "category": "Drivers",
+    "name": "NVIDIA Driver",
+    "filename": "setup.exe",
+    "runMode": 1,
+    "description": "Video driver"
+  },
+  {
+    "category": "Software",
+    "name": "7-Zip",
+    "filename": "7z.msi",
+    "additional_args": "/quiet",
+    "runMode": "2"
+  }
+]
