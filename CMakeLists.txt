@@ -4,8 +4,8 @@ project(rebuildCfg)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(rebuildCfg src/main.cpp
-        src/config/Config.h
-        src/config/ConfigParser.h
+        src/config/Config.hpp
+        src/config/ConfigParser.hpp
         src/config/ConfigParser.cpp)
 
 include(FetchContent)

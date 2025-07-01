@@ -1,5 +1,5 @@
 #pragma once
-#include "Config.h"
+#include "Config.hpp"
 #include <filesystem>
 #include <nlohmann/json.hpp>
 #include <vector>
