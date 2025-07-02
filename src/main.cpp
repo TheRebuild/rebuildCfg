@@ -1,9 +1,9 @@
-#include "config/ConfigParser.hpp"
-#include <iostream>
-#include <format>
-#include <filesystem>
 #include <algorithm>
+#include <filesystem>
+#include <format>
+#include <iostream>
 #include <vector>
+#include "config/ConfigParser.hpp"
 
 void print_configs(const std::vector<Config>& configs) {
     if (configs.empty()) {
@@ -25,8 +25,8 @@ int main() {
     const std::filesystem::path examples_dir = "../examples";
     std::vector<std::filesystem::path> test_files;
 
-    if (std::filesystem::exists(examples_dir)) { // maybe someone can optimize this xddd
-        for (auto entry : std::filesystem::directory_iterator(examples_dir)) {
+    if (std::filesystem::exists(examples_dir)) {
+        for (const auto& entry : std::filesystem::directory_iterator(examples_dir)) {
             if (entry.is_regular_file() && entry.path().extension() == ".json") {
                 test_files.push_back(entry.path());
             }

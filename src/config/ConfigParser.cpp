@@ -1,14 +1,13 @@
 #include "ConfigParser.hpp"
 #include <charconv>
 #include <filesystem>
-#include <fstream>
 #include <format>
+#include <fstream>
 #include <stdexcept>
 
 ConfigParser::ConfigParser(const std::filesystem::path& config_file) {
     if (std::error_code ec; !std::filesystem::exists(config_file, ec) || ec) {
-        throw std::runtime_error(
-            std::format("File does not exist or cannot be accessed: {}", config_file.string()));
+        throw std::runtime_error(std::format("File does not exist or cannot be accessed: {}", config_file.string()));
     }
 
     std::ifstream file_stream(config_file);
@@ -42,15 +41,9 @@ std::vector<Config> ConfigParser::get_configs() const {
     return configs;
 }
 
-std::vector<Config> ConfigParser::take_configs(RunMode mode) const {
-    auto all_configs = get_configs();
-    std::vector<Config> filtered;
-    for (auto config : all_configs) {
-        if (config.runMode == mode) {
-            filtered.push_back(config);
-        }
-    }
-    return filtered;
+std::vector<Config> ConfigParser::take_configs(const RunMode mode) const {
+    return get_configs() | std::views::filter([=](const Config& config) { return config.runMode == mode; }) |
+        std::ranges::to<std::vector<Config>>();
 }
 
 Config ConfigParser::parse_single_config(const nlohmann::json& json) {

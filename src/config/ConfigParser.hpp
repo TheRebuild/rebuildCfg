@@ -1,8 +1,8 @@
 #pragma once
-#include "Config.hpp"
 #include <filesystem>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include "Config.hpp"
 
 class ConfigParser {
 public:
